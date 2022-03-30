@@ -18,9 +18,6 @@ public class AnalBank {
     
     public static void main(String[] args) {
         ventanaMenuPrincipal = new MainGUI();
-        ventanaConsulta = new ConsultaGUI();
-        ventanaModificar = new ModificarGUI();
-        ventanaRegistro = new RegistroGUI();
         ventanaMenuPrincipal.setVisible(true);
     }
 }
