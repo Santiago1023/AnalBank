@@ -46,17 +46,41 @@ public class MainGUI extends javax.swing.JFrame {
         getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 88, -1, -1));
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 165, -1, -1));
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 252, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        AnalBank.ventanaRegistro = new RegistroGUI();
+        AnalBank.ventanaRegistro.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        AnalBank.ventanaModificar = new ModificarGUI();
+        AnalBank.ventanaModificar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        AnalBank.ventanaConsulta = new ConsultaGUI();
+        AnalBank.ventanaConsulta.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments
