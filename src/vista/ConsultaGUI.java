@@ -4,11 +4,16 @@
  */
 package vista;
 
+import controlador.Controlador;
+import modelo.Eventos;
+
 /**
  *
  * @author santi
  */
 public class ConsultaGUI extends javax.swing.JFrame {
+    Controlador controlador = new Controlador();
+    Eventos event = new Eventos();
 
     /**
      * Creates new form ConsultarGUI
@@ -78,6 +83,12 @@ public class ConsultaGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Ingrese el tipo y número de identificación");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 44, 136, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
@@ -231,9 +242,12 @@ public class ConsultaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        AnalBank.ventanaMenuPrincipal.setVisible(true);
-        this.setVisible(false);
+        controlador.cambiarDeVentana(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments

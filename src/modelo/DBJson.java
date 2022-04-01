@@ -9,6 +9,21 @@ package modelo;
  *
  * @author jhona
  */
-public class DBJson {
+public class DBJson implements IDB{
+
+    @Override
+    public boolean guardar(Empleado empleado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean actualizar(Empleado empleado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Empleado consultar(String identificacion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

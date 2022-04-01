@@ -37,6 +37,9 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1KeyTyped"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="71" y="44" width="136" height="-1"/>
@@ -251,8 +254,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombreArl">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreArlKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTipoAfiliadoArl">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTipoAfiliadoArlKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -290,6 +299,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombrePension">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombrePensionKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -402,6 +414,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtSalarioContrato">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSalarioContratoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
               <Properties>
@@ -478,6 +493,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombreEps">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreEpsKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="labelTipo1">
               <Properties>
@@ -485,6 +503,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTipoAfiliacionEps">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTipoAfiliacionEpsKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -525,6 +546,9 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="txtNumeroCuentaNomina">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNumeroCuentaNominaKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
@@ -640,16 +664,34 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombreEmpleado">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreEmpleadoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtApellidoEmpleado">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApellidoEmpleadoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtIdEmpleado">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIdEmpleadoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPaisEmpleado">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPaisEmpleadoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtEstadoEmpleado">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEstadoEmpleadoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCargoEmpleado">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCargoEmpleadoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboId">
               <Properties>

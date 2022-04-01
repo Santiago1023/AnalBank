@@ -9,6 +9,24 @@ package modelo;
  *
  * @author jhona
  */
-public class CuentaNomina {
+public class CuentaNomina implements IComponente{
+    protected String numeroCuenta;
+    protected String usuario;
+    private String contrasena;
+
+    public CuentaNomina(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+    
+    public void modificarInformacion(String numeroCuenta){
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    @Override
+    public String toString() {
+        return "CuentaNomina{" + "numeroCuenta=" + numeroCuenta + '}';
+    }
+
+    
     
 }

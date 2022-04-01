@@ -9,6 +9,28 @@ package modelo;
  *
  * @author jhona
  */
-public class Proxy {
+public class Proxy implements IDB{
+    private DBJson dbJson;
+
+    public Proxy() {
+    }
+
+    @Override
+    public boolean guardar(Empleado empleado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean actualizar(Empleado empleado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Empleado consultar(String identificacion) {
+        return dbJson.consultar(identificacion);
+    }
     
+    public boolean validar(String identificacion){
+        //TODO
+    }
 }

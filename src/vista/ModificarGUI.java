@@ -4,11 +4,16 @@
  */
 package vista;
 
+import controlador.Controlador;
+import modelo.Eventos;
+
 /**
  *
  * @author santi
  */
 public class ModificarGUI extends javax.swing.JFrame {
+    Controlador controlador = new Controlador();
+    Eventos event = new Eventos();
 
     /**
      * Creates new form ModificarGUI
@@ -86,6 +91,12 @@ public class ModificarGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Ingrese el tipo y número de identificación");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 44, 136, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
@@ -113,6 +124,18 @@ public class ModificarGUI extends javax.swing.JFrame {
         labelNombre.setText("Nombre");
 
         labelTipo.setText("Tipo Afiliacion");
+
+        txtNombreArl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreArlKeyTyped(evt);
+            }
+        });
+
+        txtTipoAfiliadoArl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoAfiliadoArlKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,6 +167,12 @@ public class ModificarGUI extends javax.swing.JFrame {
         );
 
         jLabel13.setText("Nombre");
+
+        txtNombrePension.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombrePensionKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -184,6 +213,12 @@ public class ModificarGUI extends javax.swing.JFrame {
         jLabel16.setText("Fecha Inicio");
 
         jLabel17.setText("Salario");
+
+        txtSalarioContrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSalarioContratoKeyTyped(evt);
+            }
+        });
 
         jLabel18.setText("Fecha finalizacion");
 
@@ -240,7 +275,19 @@ public class ModificarGUI extends javax.swing.JFrame {
 
         labelNombre1.setText("Nombre");
 
+        txtNombreEps.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEpsKeyTyped(evt);
+            }
+        });
+
         labelTipo1.setText("Tipo Afiliacion");
+
+        txtTipoAfiliacionEps.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoAfiliacionEpsKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -276,6 +323,12 @@ public class ModificarGUI extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 255));
         jLabel9.setText("EPS");
 
+        txtNumeroCuentaNomina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroCuentaNominaKeyTyped(evt);
+            }
+        });
+
         jLabel11.setText("Numero Cuenta");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -310,6 +363,42 @@ public class ModificarGUI extends javax.swing.JFrame {
         jLabel6.setText("Estado");
 
         jLabel10.setText("Cargo");
+
+        txtNombreEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtApellidoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtIdEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtPaisEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPaisEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtEstadoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEstadoEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtCargoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCargoEmpleadoKeyTyped(evt);
+            }
+        });
 
         comboId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
 
@@ -470,9 +559,64 @@ public class ModificarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_comboContratoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        AnalBank.ventanaMenuPrincipal.setVisible(true);
-        this.setVisible(false);
+        controlador.cambiarDeVentana(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtNombreEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtNombreEmpleadoKeyTyped
+
+    private void txtIdEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpleadoKeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_txtIdEmpleadoKeyTyped
+
+    private void txtEstadoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstadoEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtEstadoEmpleadoKeyTyped
+
+    private void txtApellidoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtApellidoEmpleadoKeyTyped
+
+    private void txtPaisEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaisEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtPaisEmpleadoKeyTyped
+
+    private void txtCargoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargoEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtCargoEmpleadoKeyTyped
+
+    private void txtNombreArlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreArlKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtNombreArlKeyTyped
+
+    private void txtTipoAfiliadoArlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoAfiliadoArlKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtTipoAfiliadoArlKeyTyped
+
+    private void txtNombreEpsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEpsKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtNombreEpsKeyTyped
+
+    private void txtTipoAfiliacionEpsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoAfiliacionEpsKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtTipoAfiliacionEpsKeyTyped
+
+    private void txtNumeroCuentaNominaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroCuentaNominaKeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_txtNumeroCuentaNominaKeyTyped
+
+    private void txtNombrePensionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePensionKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtNombrePensionKeyTyped
+
+    private void txtSalarioContratoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioContratoKeyTyped
+        event.numberDecimalKeyPress(evt, txtSalarioContrato);
+    }//GEN-LAST:event_txtSalarioContratoKeyTyped
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments

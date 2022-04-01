@@ -5,10 +5,22 @@
  */
 package modelo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author jhona
  */
-public class Contrato {
+public abstract class Contrato implements IComponente {
+    protected LocalDate fechaInicio;
+    protected float salario;
+
+    public Contrato(LocalDate fechaInicio, float salario) {
+        this.fechaInicio = fechaInicio;
+        this.salario = salario;
+    }
+
+    @Override
+    public abstract String toString();
     
 }

@@ -10,8 +10,8 @@ package modelo;
  * @author jhona
  */
 public class ARL implements IComponente{
-    String nombre;
-    String tipoAfiliacion;
+    protected String nombre;
+    protected String tipoAfiliacion;
     
     protected ARL(){
         
@@ -19,10 +19,10 @@ public class ARL implements IComponente{
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "ARL{" + "nombre=" + nombre + ", tipoAfiliacion=" + tipoAfiliacion + '}';
     }
     
-    public boolean modificarInformacion(String nombre, String tipoAfiliacion){
+    public void modificarInformacion(String nombre, String tipoAfiliacion){
         this.nombre = nombre;
         this.tipoAfiliacion = tipoAfiliacion;
     }

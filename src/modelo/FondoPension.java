@@ -9,6 +9,23 @@ package modelo;
  *
  * @author jhona
  */
-public class FondoPension {
+public class FondoPension implements IComponente{
+    protected String nombre;
+    protected int semanasCotizadas;
+    protected int semanasRestantes;
+    protected int totalSemanas;
+
+    public FondoPension(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "FondoPension{" + "nombre=" + nombre + '}';
+    }
+
     
+    public void modificarInformacion(String nombre){
+        this.nombre = nombre;
+    }
 }

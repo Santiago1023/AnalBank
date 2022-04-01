@@ -4,17 +4,20 @@
  */
 package vista;
 
+import controlador.Controlador;
+
 /**
  *
  * @author santi
  */
 public class MainGUI extends javax.swing.JFrame {
+    Controlador controlador = new Controlador();
 
     /**
      * Creates new form MainGUI
      */
     public MainGUI() {
-        initComponents();
+        initComponents();        
     }
 
     /**
@@ -68,21 +71,15 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        AnalBank.ventanaRegistro = new RegistroGUI();
-        AnalBank.ventanaRegistro.setVisible(true);
-        this.setVisible(false);
+        controlador.cambiarDeVentana(1);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        AnalBank.ventanaModificar = new ModificarGUI();
-        AnalBank.ventanaModificar.setVisible(true);
-        this.setVisible(false);
+        controlador.cambiarDeVentana(2);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        AnalBank.ventanaConsulta = new ConsultaGUI();
-        AnalBank.ventanaConsulta.setVisible(true);
-        this.setVisible(false);
+        controlador.cambiarDeVentana(3);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**

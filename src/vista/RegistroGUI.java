@@ -4,20 +4,53 @@
  */
 package vista;
 
+import controlador.Controlador;
+import javax.swing.JOptionPane;
+import modelo.Eventos;
+
 /**
  *
  * @author santi
  */
 public class RegistroGUI extends javax.swing.JFrame {
-
+    Controlador controlador = new Controlador();
+    Eventos event = new Eventos();
+    
     /**
      * Creates new form RegistroGUI
      */
     public RegistroGUI() {
         initComponents();
-        //Esto se puede agregar a un metodo
-        jLabel18.setVisible(false);
-        fechaFin.setVisible(false);
+    }
+    
+    public boolean datosNoVacios(){
+        if(txtNombreEmpleado.getText().equals("") || txtApellidoEmpleado.getText().equals("") || txtIdEmpleado.getText().equals("") ||
+                txtPaisEmpleado.getText().equals("") || txtCargoEmpleado.getText().equals("") || txtEstadoEmpleado.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del empleado");
+            return false;
+        }
+        if(txtNombreArl.getText().equals("") || txtTipoAfiliadoArl.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del ARL");
+            return false;
+        }
+        if(txtNombreEps.getText().equals("") || txtTipoAfiliacionEps.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del EPS");
+            return false;
+        }
+        if(txtNumeroCuentaNomina.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada de la cuenta de nómina");
+            return false;
+        }
+        if(txtNombrePension.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del fondo de pensión");
+            return false;
+        }
+        if(txtFechaInicio.getDateFormatString().equals("") || (comboContrato.getSelectedIndex() != 1 && txtFechaFin.getDateFormatString().equals(""))
+                || txtSalarioContrato.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del contrato");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -71,8 +104,8 @@ public class RegistroGUI extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtSalarioContrato = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        fechaInicio = new com.toedter.calendar.JDateChooser();
-        fechaFin = new com.toedter.calendar.JDateChooser();
+        txtFechaInicio = new com.toedter.calendar.JDateChooser();
+        txtFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -91,6 +124,42 @@ public class RegistroGUI extends javax.swing.JFrame {
         jLabel5.setText("Estado");
 
         jLabel6.setText("Cargo");
+
+        txtNombreEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtApellidoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtIdEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtPaisEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPaisEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtEstadoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEstadoEmpleadoKeyTyped(evt);
+            }
+        });
+
+        txtCargoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCargoEmpleadoKeyTyped(evt);
+            }
+        });
 
         comboId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
 
@@ -158,7 +227,19 @@ public class RegistroGUI extends javax.swing.JFrame {
 
         labelNombre1.setText("Nombre");
 
+        txtNombreEps.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreEpsKeyTyped(evt);
+            }
+        });
+
         labelTipo1.setText("Tipo Afiliacion");
+
+        txtTipoAfiliacionEps.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoAfiliacionEpsKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -195,6 +276,18 @@ public class RegistroGUI extends javax.swing.JFrame {
 
         labelTipo.setText("Tipo Afiliacion");
 
+        txtNombreArl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreArlKeyTyped(evt);
+            }
+        });
+
+        txtTipoAfiliadoArl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoAfiliadoArlKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -230,6 +323,12 @@ public class RegistroGUI extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 0, 255));
         jLabel9.setText("EPS");
 
+        txtNumeroCuentaNomina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroCuentaNominaKeyTyped(evt);
+            }
+        });
+
         jLabel11.setText("Numero Cuenta");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -257,6 +356,12 @@ public class RegistroGUI extends javax.swing.JFrame {
         jLabel10.setText("Cuenta Nomina");
 
         jLabel13.setText("Nombre");
+
+        txtNombrePension.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombrePensionKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -295,6 +400,12 @@ public class RegistroGUI extends javax.swing.JFrame {
 
         jLabel17.setText("Salario");
 
+        txtSalarioContrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSalarioContratoKeyTyped(evt);
+            }
+        });
+
         jLabel18.setText("Fecha finalizacion");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -313,11 +424,11 @@ public class RegistroGUI extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(comboContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSalarioContrato, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                            .addComponent(fechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
-                        .addComponent(fechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(txtFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(336, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -330,7 +441,7 @@ public class RegistroGUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel16)
-                    .addComponent(fechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSalarioContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,7 +449,7 @@ public class RegistroGUI extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel18)
-                    .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -346,6 +457,11 @@ public class RegistroGUI extends javax.swing.JFrame {
         jLabel14.setText("Contrato");
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -437,19 +553,76 @@ public class RegistroGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboContratoActionPerformed
-        if(comboContrato.getSelectedIndex() == 0){
+        if(comboContrato.getSelectedIndex() == 1){
             jLabel18.setVisible(false);
-            fechaFin.setVisible(false);
+            txtFechaFin.setVisible(false);
         }else{
             jLabel18.setVisible(true);
-            fechaFin.setVisible(true);
+            txtFechaFin.setVisible(true);
         }
     }//GEN-LAST:event_comboContratoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        AnalBank.ventanaMenuPrincipal.setVisible(true);
-        this.setVisible(false);
+        controlador.cambiarDeVentana(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if(datosNoVacios()){
+            
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void txtNombreEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtNombreEmpleadoKeyTyped
+
+    private void txtIdEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpleadoKeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_txtIdEmpleadoKeyTyped
+
+    private void txtEstadoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstadoEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtEstadoEmpleadoKeyTyped
+
+    private void txtApellidoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtApellidoEmpleadoKeyTyped
+
+    private void txtPaisEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaisEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtPaisEmpleadoKeyTyped
+
+    private void txtCargoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCargoEmpleadoKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtCargoEmpleadoKeyTyped
+
+    private void txtNombreArlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreArlKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtNombreArlKeyTyped
+
+    private void txtTipoAfiliadoArlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoAfiliadoArlKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtTipoAfiliadoArlKeyTyped
+
+    private void txtNombreEpsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEpsKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtNombreEpsKeyTyped
+
+    private void txtTipoAfiliacionEpsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoAfiliacionEpsKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtTipoAfiliacionEpsKeyTyped
+
+    private void txtNumeroCuentaNominaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroCuentaNominaKeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_txtNumeroCuentaNominaKeyTyped
+
+    private void txtNombrePensionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombrePensionKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtNombrePensionKeyTyped
+
+    private void txtSalarioContratoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioContratoKeyTyped
+        event.numberDecimalKeyPress(evt, txtSalarioContrato);
+    }//GEN-LAST:event_txtSalarioContratoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -491,8 +664,6 @@ public class RegistroGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> comboContrato;
     private javax.swing.JComboBox<String> comboId;
-    private com.toedter.calendar.JDateChooser fechaFin;
-    private com.toedter.calendar.JDateChooser fechaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -524,6 +695,8 @@ public class RegistroGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtApellidoEmpleado;
     private javax.swing.JTextField txtCargoEmpleado;
     private javax.swing.JTextField txtEstadoEmpleado;
+    private com.toedter.calendar.JDateChooser txtFechaFin;
+    private com.toedter.calendar.JDateChooser txtFechaInicio;
     private javax.swing.JTextField txtIdEmpleado;
     private javax.swing.JTextField txtNombreArl;
     private javax.swing.JTextField txtNombreEmpleado;

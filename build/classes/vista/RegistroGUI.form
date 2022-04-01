@@ -229,16 +229,34 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreEmpleado">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreEmpleadoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidoEmpleado">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApellidoEmpleadoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtIdEmpleado">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIdEmpleadoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtPaisEmpleado">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPaisEmpleadoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEstadoEmpleado">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEstadoEmpleadoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCargoEmpleado">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCargoEmpleadoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="comboId">
           <Properties>
@@ -311,6 +329,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreEps">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreEpsKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelTipo1">
           <Properties>
@@ -318,6 +339,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTipoAfiliacionEps">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTipoAfiliacionEpsKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -371,8 +395,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreArl">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreArlKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTipoAfiliadoArl">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTipoAfiliadoArlKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -421,6 +451,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="txtNumeroCuentaNomina">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNumeroCuentaNominaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
@@ -471,6 +504,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombrePension">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombrePensionKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -500,13 +536,13 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="comboContrato" min="-2" max="-2" attributes="0"/>
                               <Component id="txtSalarioContrato" pref="138" max="32767" attributes="0"/>
-                              <Component id="fechaInicio" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtFechaInicio" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="fechaFin" max="32767" attributes="0"/>
+                          <Component id="txtFechaFin" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="336" max="32767" attributes="0"/>
@@ -524,7 +560,7 @@
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                      <Component id="fechaInicio" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFechaInicio" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -534,7 +570,7 @@
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                      <Component id="fechaFin" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFechaFin" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
@@ -575,15 +611,18 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSalarioContrato">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSalarioContratoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel18">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha finalizacion"/>
           </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="fechaInicio">
+        <Component class="com.toedter.calendar.JDateChooser" name="txtFechaInicio">
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="fechaFin">
+        <Component class="com.toedter.calendar.JDateChooser" name="txtFechaFin">
         </Component>
       </SubComponents>
     </Container>
@@ -599,6 +638,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Aceptar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAceptarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>

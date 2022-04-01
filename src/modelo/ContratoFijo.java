@@ -5,10 +5,29 @@
  */
 package modelo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author jhona
  */
-public class ContratoFijo {
+public class ContratoFijo extends Contrato{
+    protected LocalDate fechaFinalizacion;
+
+    public ContratoFijo(LocalDate fechaInicio, LocalDate fechaFinalizacion, float salario) {
+        super(fechaInicio, salario);
+        this.fechaFinalizacion = fechaFinalizacion;
+    }
+
+    @Override
+    public String toString() {
+        return "ContratoFijo{" + "fechaInicio=" + fechaInicio + ", fechaFinalizacion=" + fechaFinalizacion + ", salario=" + salario + '}';
+    }
+    
+    public void modificarInformacion(LocalDate fechaInicio, LocalDate fechaFinalizacion, float salario){
+        super.fechaInicio = fechaInicio;
+        super.salario = salario;
+        this.fechaFinalizacion = fechaFinalizacion;
+    }
     
 }
