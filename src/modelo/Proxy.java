@@ -13,16 +13,25 @@ public class Proxy implements IDB{
     private DBJson dbJson;
 
     public Proxy() {
+        dbJson = new DBJson();
     }
 
     @Override
     public boolean guardar(Empleado empleado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!validar(empleado.id)){
+            dbJson.guardar(empleado);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean actualizar(Empleado empleado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(validar(empleado.id)){
+            //TODO Reemplazar el registro
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -31,6 +40,9 @@ public class Proxy implements IDB{
     }
     
     public boolean validar(String identificacion){
-        //TODO
+        if(consultar(identificacion) == null){
+            return false;
+        }
+        return true;
     }
 }

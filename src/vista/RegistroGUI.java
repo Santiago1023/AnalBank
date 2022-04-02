@@ -5,8 +5,9 @@
 package vista;
 
 import controlador.Controlador;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
-import modelo.Eventos;
+import modelo.*;
 
 /**
  *
@@ -25,7 +26,7 @@ public class RegistroGUI extends javax.swing.JFrame {
     
     public boolean datosNoVacios(){
         if(txtNombreEmpleado.getText().equals("") || txtApellidoEmpleado.getText().equals("") || txtIdEmpleado.getText().equals("") ||
-                txtPaisEmpleado.getText().equals("") || txtCargoEmpleado.getText().equals("") || txtEstadoEmpleado.getText().equals("")){
+                txtPaisEmpleado.getText().equals("") || txtCargoEmpleado.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Verifique la información ingresada del empleado");
             return false;
         }
@@ -73,9 +74,9 @@ public class RegistroGUI extends javax.swing.JFrame {
         txtApellidoEmpleado = new javax.swing.JTextField();
         txtIdEmpleado = new javax.swing.JTextField();
         txtPaisEmpleado = new javax.swing.JTextField();
-        txtEstadoEmpleado = new javax.swing.JTextField();
         txtCargoEmpleado = new javax.swing.JTextField();
         comboId = new javax.swing.JComboBox<>();
+        comboEstadoEmpleado = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         labelNombre1 = new javax.swing.JLabel();
@@ -149,12 +150,6 @@ public class RegistroGUI extends javax.swing.JFrame {
             }
         });
 
-        txtEstadoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtEstadoEmpleadoKeyTyped(evt);
-            }
-        });
-
         txtCargoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCargoEmpleadoKeyTyped(evt);
@@ -162,6 +157,8 @@ public class RegistroGUI extends javax.swing.JFrame {
         });
 
         comboId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
+
+        comboEstadoEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo", "Retirado" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,8 +169,8 @@ public class RegistroGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(txtEstadoEmpleado))
+                        .addGap(34, 34, 34)
+                        .addComponent(comboEstadoEmpleado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
@@ -182,7 +179,7 @@ public class RegistroGUI extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(comboId, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(104, 104, 104)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,11 +212,12 @@ public class RegistroGUI extends javax.swing.JFrame {
                         .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(comboId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtEstadoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtCargoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(txtCargoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboEstadoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 255));
@@ -408,6 +406,18 @@ public class RegistroGUI extends javax.swing.JFrame {
 
         jLabel18.setText("Fecha finalizacion");
 
+        txtFechaInicio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFechaInicioKeyTyped(evt);
+            }
+        });
+
+        txtFechaFin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFechaFinKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -568,8 +578,32 @@ public class RegistroGUI extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if(datosNoVacios()){
-            
+            ARL arl = new ARL(txtNombreArl.getText(), txtTipoAfiliadoArl.getText());
+            EPS eps = new EPS(txtNombreEps.getText(), txtTipoAfiliacionEps.getText());
+            CuentaNomina cuentaNomina = new CuentaNomina(txtNumeroCuentaNomina.getText());
+            FondoPension fondoPension = new FondoPension(txtNombrePension.getText());
+            Contrato contrato;
+            LocalDate fechaInicio = LocalDate.of(txtFechaInicio.getDate().getYear(), txtFechaInicio.getDate().getMonth(), txtFechaInicio.getDate().getDay());
+            switch(comboContrato.getSelectedIndex()){
+                case 0:
+                    LocalDate fechaFin = LocalDate.of(txtFechaFin.getDate().getYear(), txtFechaFin.getDate().getMonth(), txtFechaFin.getDate().getDay());
+                    contrato = new ContratoFijo(fechaInicio, fechaFin, Float.parseFloat(txtSalarioContrato.getText()));
+                case 1:
+                    contrato = new ContratoIndefinido(fechaInicio, Float.parseFloat(txtSalarioContrato.getText()));
+                default:
+                    fechaFin = LocalDate.of(txtFechaFin.getDate().getYear(), txtFechaFin.getDate().getMonth(), txtFechaFin.getDate().getDay());
+                    contrato = new ContratoPrestacionServicios(fechaInicio, fechaFin, Float.parseFloat(txtSalarioContrato.getText()));
+            }
+            Empleado empleado = new Empleado(txtNombreEmpleado.getText(), txtApellidoEmpleado.getText(), txtIdEmpleado.getText(),
+                    txtPaisEmpleado.getText(), comboEstadoEmpleado.getSelectedItem().toString(), txtCargoEmpleado.getText());
+            empleado.agregarComponente(arl);
+            empleado.agregarComponente(eps);
+            empleado.agregarComponente(cuentaNomina);
+            empleado.agregarComponente(fondoPension);
+            empleado.agregarComponente(contrato);
+            controlador.guardarEmpleado(empleado);
         }
+        System.out.println(txtFechaInicio.getDate().getMonth());
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtNombreEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpleadoKeyTyped
@@ -579,10 +613,6 @@ public class RegistroGUI extends javax.swing.JFrame {
     private void txtIdEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpleadoKeyTyped
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtIdEmpleadoKeyTyped
-
-    private void txtEstadoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstadoEmpleadoKeyTyped
-        event.textKeyPress(evt);
-    }//GEN-LAST:event_txtEstadoEmpleadoKeyTyped
 
     private void txtApellidoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoEmpleadoKeyTyped
         event.textKeyPress(evt);
@@ -624,6 +654,14 @@ public class RegistroGUI extends javax.swing.JFrame {
         event.numberDecimalKeyPress(evt, txtSalarioContrato);
     }//GEN-LAST:event_txtSalarioContratoKeyTyped
 
+    private void txtFechaInicioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaInicioKeyTyped
+        evt.consume();
+    }//GEN-LAST:event_txtFechaInicioKeyTyped
+
+    private void txtFechaFinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaFinKeyTyped
+        evt.consume();
+    }//GEN-LAST:event_txtFechaFinKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -663,6 +701,7 @@ public class RegistroGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> comboContrato;
+    private javax.swing.JComboBox<String> comboEstadoEmpleado;
     private javax.swing.JComboBox<String> comboId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -694,7 +733,6 @@ public class RegistroGUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelTipo1;
     private javax.swing.JTextField txtApellidoEmpleado;
     private javax.swing.JTextField txtCargoEmpleado;
-    private javax.swing.JTextField txtEstadoEmpleado;
     private com.toedter.calendar.JDateChooser txtFechaFin;
     private com.toedter.calendar.JDateChooser txtFechaInicio;
     private javax.swing.JTextField txtIdEmpleado;

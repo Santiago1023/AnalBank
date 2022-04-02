@@ -53,10 +53,7 @@ public class Controlador {
         }
     }
     
-    public boolean validarCedulaProxy(String id){
-        if(proxy.consultar(id) != null){
-            
-        }
+    public boolean guardarEmpleado(Empleado empleado){
+        return proxy.guardar(empleado);
     }
-    
 }

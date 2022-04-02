@@ -13,7 +13,7 @@ public class ARL implements IComponente{
     protected String nombre;
     protected String tipoAfiliacion;
     
-    protected ARL(String nombre, String tipoAfiliacion){
+    public ARL(String nombre, String tipoAfiliacion){
         this.nombre = nombre;
         this.tipoAfiliacion = tipoAfiliacion;
     }

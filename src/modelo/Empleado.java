@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author jhona
  */
-public class Empleado {
+public class Empleado implements IComponente{
     protected ArrayList<IComponente> datosExternos = new ArrayList<>();
     protected String nombre;
     protected String apellido;
