@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * @author jhona
  */
 public class Empleado implements IComponente{
-    protected ArrayList<IComponente> datosExternos = new ArrayList<>();
     protected String nombre;
     protected String apellido;
     protected String id;
     protected String pais;
     protected String estado;
     protected String cargo;
+    protected DatosExternos datosExternos;
     
     public Empleado(String nombre, String apellido, String id, String pais, String estado, String cargo) {
         this.nombre = nombre;
@@ -27,6 +27,17 @@ public class Empleado implements IComponente{
         this.pais = pais;
         this.estado = estado;
         this.cargo = cargo;
+        datosExternos = new DatosExternos();
+    }
+
+    public Empleado(String nombre, String apellido, String id, String pais, String estado, String cargo, DatosExternos datosExternos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.id = id;
+        this.pais = pais;
+        this.estado = estado;
+        this.cargo = cargo;
+        this.datosExternos = datosExternos;
     }
     
     public void cambiarEstado(String estado){
@@ -48,15 +59,10 @@ public class Empleado implements IComponente{
     }
     
     public void agregarComponente(IComponente componente){
-        datosExternos.add(componente);
+        datosExternos.agregarComponente(componente);
     }
     
     public IComponente obtenerComponente(String tipo){
-        for (IComponente componente : datosExternos) {
-            if(componente.getClass().getSimpleName().equalsIgnoreCase(tipo)){
-                return componente;
-            }
-        }
-        return null;
+        return datosExternos.obtenerComponente(tipo);
     }
 }

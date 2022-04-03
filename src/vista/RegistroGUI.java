@@ -406,7 +406,11 @@ public class RegistroGUI extends javax.swing.JFrame {
 
         jLabel18.setText("Fecha finalizacion");
 
+        txtFechaInicio.setFocusable(false);
         txtFechaInicio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFechaInicioKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtFechaInicioKeyTyped(evt);
             }
@@ -583,18 +587,36 @@ public class RegistroGUI extends javax.swing.JFrame {
             CuentaNomina cuentaNomina = new CuentaNomina(txtNumeroCuentaNomina.getText());
             FondoPension fondoPension = new FondoPension(txtNombrePension.getText());
             Contrato contrato;
-            LocalDate fechaInicio = LocalDate.of(txtFechaInicio.getDate().getYear(), txtFechaInicio.getDate().getMonth(), txtFechaInicio.getDate().getDay());
+            String fechaInicio = txtFechaInicio.getDate().toLocaleString();
+            if(fechaInicio.charAt(10) == ','){
+                fechaInicio = fechaInicio.substring(0, 10);
+            }else{
+                fechaInicio = fechaInicio.substring(0, 9);
+            }  
+            String fechaFin;
             switch(comboContrato.getSelectedIndex()){
                 case 0:
-                    LocalDate fechaFin = LocalDate.of(txtFechaFin.getDate().getYear(), txtFechaFin.getDate().getMonth(), txtFechaFin.getDate().getDay());
+                    fechaFin = txtFechaFin.getDate().toLocaleString();
+                    if(fechaFin.charAt(10) == ','){
+                        fechaFin = fechaFin.substring(0, 10);
+                    }else{
+                        fechaFin = fechaFin.substring(0, 9);
+                    }
                     contrato = new ContratoFijo(fechaInicio, fechaFin, Float.parseFloat(txtSalarioContrato.getText()));
+                    break;
                 case 1:
                     contrato = new ContratoIndefinido(fechaInicio, Float.parseFloat(txtSalarioContrato.getText()));
+                    break;
                 default:
-                    fechaFin = LocalDate.of(txtFechaFin.getDate().getYear(), txtFechaFin.getDate().getMonth(), txtFechaFin.getDate().getDay());
+                    fechaFin = txtFechaFin.getDate().toLocaleString();
+                    if(fechaFin.charAt(10) == ','){
+                        fechaFin = fechaFin.substring(0, 10);
+                    }else{
+                        fechaFin = fechaFin.substring(0, 9);
+                    }
                     contrato = new ContratoPrestacionServicios(fechaInicio, fechaFin, Float.parseFloat(txtSalarioContrato.getText()));
             }
-            Empleado empleado = new Empleado(txtNombreEmpleado.getText(), txtApellidoEmpleado.getText(), txtIdEmpleado.getText(),
+            Empleado empleado = new Empleado(txtNombreEmpleado.getText(), txtApellidoEmpleado.getText(), (comboId.getSelectedItem().toString() + " " + txtIdEmpleado.getText()),
                     txtPaisEmpleado.getText(), comboEstadoEmpleado.getSelectedItem().toString(), txtCargoEmpleado.getText());
             empleado.agregarComponente(arl);
             empleado.agregarComponente(eps);
@@ -603,7 +625,6 @@ public class RegistroGUI extends javax.swing.JFrame {
             empleado.agregarComponente(contrato);
             controlador.guardarEmpleado(empleado);
         }
-        System.out.println(txtFechaInicio.getDate().getMonth());
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtNombreEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpleadoKeyTyped
@@ -661,6 +682,10 @@ public class RegistroGUI extends javax.swing.JFrame {
     private void txtFechaFinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaFinKeyTyped
         evt.consume();
     }//GEN-LAST:event_txtFechaFinKeyTyped
+
+    private void txtFechaInicioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFechaInicioKeyPressed
+        evt.consume();
+    }//GEN-LAST:event_txtFechaInicioKeyPressed
 
     /**
      * @param args the command line arguments

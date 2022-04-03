@@ -7,6 +7,7 @@ package modelo;
 
 import com.google.gson.Gson;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,67 +21,33 @@ public class DBJson implements IDB{
     @Override
     public boolean guardar(Empleado empleado) {
         boolean escritura = false;
+        
+        Empleado[] empleados = obtenerEmpleados();
         Gson gson = new Gson();//Objeto con el cual se implementara la API Gson
-        
-         /*Mediante el método toJson(), se convierten los valores del objeto 
-        Person a formato de texto JSON, lo  cual se concatena en la cadena de 
-        caracteres json junto a las llaves que abren y cierran el arreglo del 
-        archivo */
-
-        
-        String json = gson.toJson(empleado)+"\n]";
-        
-        
-        
-         /* El siguiente fragmento de código muestra la escritura sobre 
-        un fichero desde Java, visto en cursos anteriores como técnicas de 
-        programación, se escribirá lo concatenado en la cadena de caracteres 
-        json en un archivo llamado e2.json*/
-        
-        BufferedWriter bw = null;
-        FileWriter fw = null;
-        BufferedReader br = null;
-        FileReader fr = null;
-        try {
-            File file = new File("archivoEmpleados.json");
-            // Si el archivo no existe, se crea
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            fw = new FileWriter(file);
-            bw = new BufferedWriter(fw);
-            fr = new FileReader(file);
-            br = new BufferedReader(fr);
-            String line;
-            while((line = br.readLine()) != null){
-                if(!line.equals("]")){
-                    if(!line.equals("[") && !line.endsWith(",")){
-                        line += ",";
-                    }
-                    bw.write(line);
-                    bw.newLine();
+                        
+        String json="["+gson.toJson(empleado);
+        if(empleados == null){
+            json += "]";
+        }else{
+            json += ",\n";
+            for (int i = 0; i < empleados.length; i++) {
+                if(i != empleados.length - 1){
+                    json += gson.toJson(empleados[i]) + ",\n";
                 }else{
-                    bw.write(json);
-                    break;
+                    json += gson.toJson(empleados[i]) + "]";
                 }
-            }
-            System.out.println("información agregada!");
-            escritura = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                //Cierra instancias de FileWriter y BufferedWriter
-                if (bw != null)
-                    bw.close();
-                if (fw != null)
-                    fw.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
             }
         }
         
-        System.out.println("\n"+"Escritura sobre archivoEmpleados.json"+"\n"+json);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivoEmpleados.json"))) {
+            bw.write(json);
+
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }   
+        
         return escritura;
     }
 
@@ -91,8 +58,37 @@ public class DBJson implements IDB{
 
     @Override
     public Empleado consultar(String identificacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Gson gson = new Gson();//Objeto con el cual se implementara la API Gson
+        
+        Empleado[] empleados = obtenerEmpleados();
+        if(empleados != null){
+            for(Empleado empleado: empleados){
+                if(empleado.id.equals(identificacion)){
+                    return empleado;
+                }
+            }
+        }
+        return null;
     }
     
-    
+    public Empleado[] obtenerEmpleados(){
+        Gson gson = new Gson();//Objeto con el cual se implementara la API Gson
+        String json = ""; 
+        
+        try (BufferedReader br = new BufferedReader(new FileReader("archivoEmpleados.json"))){
+            String line;
+            while ((line = br.readLine()) != null) {
+                json += line;
+            }
+
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        Empleado[] empleados = gson.fromJson(json, Empleado[].class);
+        
+        return empleados;
+    }
 }

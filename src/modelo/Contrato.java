@@ -12,12 +12,15 @@ import java.time.LocalDate;
  * @author jhona
  */
 public abstract class Contrato implements IComponente {
-    protected LocalDate fechaInicio;
+    protected String fechaInicio;
     protected float salario;
 
-    public Contrato(LocalDate fechaInicio, float salario) {
+    public Contrato(String fechaInicio, float salario) {
         this.fechaInicio = fechaInicio;
         this.salario = salario;
+    }
+    
+    public Contrato(){
     }
 
     @Override

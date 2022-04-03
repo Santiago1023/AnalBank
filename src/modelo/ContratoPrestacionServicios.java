@@ -12,21 +12,21 @@ import java.time.LocalDate;
  * @author jhona
  */
 public class ContratoPrestacionServicios extends Contrato{
-    protected LocalDate fechaFinalizacion;
+    protected String fechaFinalizacionPS;
 
-    public ContratoPrestacionServicios(LocalDate fechaInicio, LocalDate fechaFinalizacion, float salario) {
+    public ContratoPrestacionServicios(String fechaInicio, String fechaFinalizacion, float salario) {
         super(fechaInicio, salario);
-        this.fechaFinalizacion = fechaFinalizacion;
+        this.fechaFinalizacionPS = fechaFinalizacion;
     }
 
     @Override
     public String toString() {
-        return "ContratoFijo{" + "fechaInicio=" + fechaInicio + ", fechaFinalizacion=" + fechaFinalizacion + ", salario=" + salario + '}';
+        return "ContratoFijo{" + "fechaInicio=" + fechaInicio + ", fechaFinalizacionPS=" + fechaFinalizacionPS + ", salario=" + salario + '}';
     }
     
-    public void modificarInformacion(LocalDate fechaInicio, LocalDate fechaFinalizacion, float salario){
+    public void modificarInformacion(String fechaInicio, String fechaFinalizacion, float salario){
         super.fechaInicio = fechaInicio;
         super.salario = salario;
-        this.fechaFinalizacion = fechaFinalizacion;
+        this.fechaFinalizacionPS = fechaFinalizacion;
     }
 }
