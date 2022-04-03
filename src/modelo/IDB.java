@@ -11,6 +11,6 @@ package modelo;
  */
 public interface IDB {
     boolean guardar(Empleado empleado);
-    boolean actualizar(Empleado empleado);
+    boolean actualizar(String identificacionAntigua, Empleado empleado);
     Empleado consultar(String identificacion);
 }

@@ -14,34 +14,36 @@ import java.util.ArrayList;
  * @author jhona
  */
 public class DBJson implements IDB{
+    ConversorJSONtoEmpleado conversor;
 
     public DBJson() {
+        conversor = new ConversorJSONtoEmpleado();
     }
 
     @Override
     public boolean guardar(Empleado empleado) {
         boolean escritura = false;
         
-        Empleado[] empleados = obtenerEmpleados();
+        ArrayList<Empleado> empleados = obtenerEmpleados();
         Gson gson = new Gson();//Objeto con el cual se implementara la API Gson
                         
         String json="["+gson.toJson(empleado);
-        if(empleados == null){
+        if(empleados.isEmpty()){
             json += "]";
         }else{
             json += ",\n";
-            for (int i = 0; i < empleados.length; i++) {
-                if(i != empleados.length - 1){
-                    json += gson.toJson(empleados[i]) + ",\n";
+            for (int i = 0; i < empleados.size(); i++) {
+                if(i != empleados.size() - 1){
+                    json += gson.toJson(empleados.get(i)) + ",\n";
                 }else{
-                    json += gson.toJson(empleados[i]) + "]";
+                    json += gson.toJson(empleados.get(i)) + "]";
                 }
             }
         }
         
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivoEmpleados.json"))) {
             bw.write(json);
-
+            escritura = true;
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         } catch (IOException ex) {
@@ -52,33 +54,48 @@ public class DBJson implements IDB{
     }
 
     @Override
-    public boolean actualizar(Empleado empleado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean actualizar(String identificacionAntigua, Empleado empleado) {
+        Gson gson = new Gson();
+        ArrayList<Empleado> empleados = obtenerEmpleados();
+        
+        for (int i = 0; i < empleados.size(); i++) {
+            if(identificacionAntigua.equals(empleados.get(i).id)){
+                empleados.remove(i);
+                
+                String json="["+gson.toJson(empleado);
+                if(empleados.isEmpty()){
+                    json += "]";
+                }else{
+                    json += ",\n";
+                    for (int j = 0; j < empleados.size(); j++) {
+                        if(j != empleados.size() - 1){
+                            json += gson.toJson(empleados.get(j)) + ",\n";
+                        }else{
+                            json += gson.toJson(empleados.get(j)) + "]";
+                        }
+                    }
+                }
+                try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivoEmpleados.json"))) {
+                    bw.write(json);
+                } catch (FileNotFoundException ex) {
+                    System.out.println(ex.getMessage());
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public Empleado consultar(String identificacion) {
-        Gson gson = new Gson();//Objeto con el cual se implementara la API Gson
-        
-        Empleado[] empleados = obtenerEmpleados();
-        if(empleados != null){
-            for(Empleado empleado: empleados){
-                if(empleado.id.equals(identificacion)){
-                    return empleado;
-                }
-            }
-        }
-        return null;
-    }
-    
-    public Empleado[] obtenerEmpleados(){
-        Gson gson = new Gson();//Objeto con el cual se implementara la API Gson
-        String json = ""; 
-        
-        try (BufferedReader br = new BufferedReader(new FileReader("archivoEmpleados.json"))){
+        try (BufferedReader br = new BufferedReader(new FileReader("archivoEmpleados.json"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                json += line;
+                if (line.contains(identificacion)) {
+                    return conversor.convertirEmpleado(line);
+                }
             }
 
         } catch (FileNotFoundException ex) {
@@ -86,9 +103,24 @@ public class DBJson implements IDB{
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        return null;
+    }
+    
+    public ArrayList<Empleado> obtenerEmpleados(){
+        ArrayList<Empleado> empleados = new ArrayList<>();
         
-        Empleado[] empleados = gson.fromJson(json, Empleado[].class);
-        
+        try (BufferedReader br = new BufferedReader(new FileReader("archivoEmpleados.json"))){
+            String line;
+            while ((line = br.readLine()) != null) {
+                empleados.add(conversor.convertirEmpleado(line));
+            }
+
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+                
         return empleados;
     }
 }

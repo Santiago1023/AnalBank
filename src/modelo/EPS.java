@@ -10,8 +10,8 @@ package modelo;
  * @author jhona
  */
 public class EPS implements IComponente{
-    private String nombre;
-    private String tipoAfiliacion;
+    protected String nombre;
+    protected String tipoAfiliacion;
 
     public EPS(String nombre, String tipoAfiliacion) {
         this.nombre = nombre;

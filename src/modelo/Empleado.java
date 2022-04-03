@@ -52,10 +52,10 @@ public class Empleado implements IComponente{
         this.estado = estado;
         this.cargo = cargo;
     }
-    
+
     @Override
     public String toString() {
-        return "Empleado{" + "datosExternos=" + datosExternos + ", nombre=" + nombre + ", apellido=" + apellido + ", id=" + id + ", pais=" + pais + ", estado=" + estado + ", cargo=" + cargo + '}';
+        return "Empleado{" + "nombre=" + nombre + ", apellido=" + apellido + ", id=" + id + ", pais=" + pais + ", estado=" + estado + ", cargo=" + cargo + ", datosExternos=" + datosExternos + '}';
     }
     
     public void agregarComponente(IComponente componente){
@@ -64,5 +64,29 @@ public class Empleado implements IComponente{
     
     public IComponente obtenerComponente(String tipo){
         return datosExternos.obtenerComponente(tipo);
+    }
+    
+    public String obtenerDatos(){
+        String datos = "";
+        datos += nombre + ",";
+        datos += apellido + ",";
+        datos += id + ",";
+        datos += pais + ",";
+        datos += estado + ",";
+        datos += cargo + ",";
+        
+        datos += datosExternos.arl.nombre + ",";
+        datos += datosExternos.arl.tipoAfiliacion + ",";
+        
+        datos += datosExternos.eps.nombre + ",";
+        datos += datosExternos.eps.tipoAfiliacion + ",";
+        
+        datos += datosExternos.cuentaNomina.numeroCuenta + ",";
+        
+        datos += datosExternos.fondoPension.nombre + ",";
+        
+        datos += datosExternos.contrato.obtenerDatos();
+        
+        return datos;
     }
 }

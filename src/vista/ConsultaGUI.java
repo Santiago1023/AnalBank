@@ -5,6 +5,8 @@
 package vista;
 
 import controlador.Controlador;
+import javax.swing.JOptionPane;
+import modelo.Empleado;
 import modelo.Eventos;
 
 /**
@@ -22,6 +24,63 @@ public class ConsultaGUI extends javax.swing.JFrame {
         initComponents();
         panelDatos.setVisible(false);
     }
+    
+    public void mostrarDatos(String [] datos){
+        for (int i = 0; i < datos.length; i++) {
+            String datoLeido = datos[i];
+            switch (i) {
+                case 0:
+                    labelNombreEmpleado.setText(datoLeido);
+                    break;
+                case 1:
+                    labelApellidoEmpleado.setText(datoLeido);
+                    break;
+                case 2:
+                    labelId.setText(datoLeido);
+                    break;
+                case 3:
+                    labelPais.setText(datoLeido);
+                    break;
+                case 4:
+                    labelEstado.setText(datoLeido);
+                    break;
+                case 5:
+                    labelCargo.setText(datoLeido);
+                    break;
+                case 6:
+                    labelNombreARL.setText(datoLeido);
+                    break;
+                case 7:
+                    labelTipoAfiliacionARL.setText(datoLeido);
+                    break;
+                case 8:
+                    labelNombreEPS.setText(datoLeido);
+                    break;
+                case 9:
+                    labelTipoAfiliacionEPS.setText(datoLeido);
+                    break;
+                case 10:
+                    labelNumeroCuenta.setText(datoLeido);
+                    break;
+                case 11:
+                    labelNombreFondoPension.setText(datoLeido);
+                    break;
+                case 12:
+                    labelTipoContrato.setText(datoLeido);
+                    break;
+                case 13:
+                    labelFechaInicio.setText(datoLeido);
+                    break;
+                case 14://Contrato
+                    labelSalario.setText(datoLeido);
+                    break;
+                case 15:
+                    labelFechaFin.setText(datoLeido);
+                    break;
+                default:
+            }
+        }        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,9 +92,9 @@ public class ConsultaGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
+        comboId = new javax.swing.JComboBox<>();
+        btnBuscar = new javax.swing.JButton();
         panelDatos = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -58,7 +117,7 @@ public class ConsultaGUI extends javax.swing.JFrame {
         labelNombre3 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        labelFechaFin = new javax.swing.JLabel();
+        labelFF = new javax.swing.JLabel();
         labelNombreEmpleado = new javax.swing.JLabel();
         labelId = new javax.swing.JLabel();
         labelEstado = new javax.swing.JLabel();
@@ -74,7 +133,7 @@ public class ConsultaGUI extends javax.swing.JFrame {
         labelTipoContrato = new javax.swing.JLabel();
         labelFechaInicio = new javax.swing.JLabel();
         labelSalario = new javax.swing.JLabel();
-        labelDatosFechaFin = new javax.swing.JLabel();
+        labelFechaFin = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,23 +143,23 @@ public class ConsultaGUI extends javax.swing.JFrame {
         jLabel1.setText("Ingrese el tipo y número de identificación");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtIdKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 44, 136, -1));
+        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 44, 136, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 44, -1, -1));
+        comboId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
+        getContentPane().add(comboId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 44, -1, -1));
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 43, -1, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 43, -1, -1));
 
         panelDatos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -173,56 +232,56 @@ public class ConsultaGUI extends javax.swing.JFrame {
         jLabel36.setText("Salario");
         panelDatos.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 72, -1));
 
-        labelFechaFin.setText("Fecha finalizacion");
-        panelDatos.add(labelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
+        labelFF.setText("Fecha finalizacion");
+        panelDatos.add(labelFF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
 
         labelNombreEmpleado.setText("jLabel2");
-        panelDatos.add(labelNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
+        panelDatos.add(labelNombreEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
 
         labelId.setText("jLabel2");
-        panelDatos.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+        panelDatos.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         labelEstado.setText("jLabel2");
-        panelDatos.add(labelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+        panelDatos.add(labelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
 
         labelNombreARL.setText("jLabel7");
-        panelDatos.add(labelNombreARL, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
+        panelDatos.add(labelNombreARL, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
         labelTipoAfiliacionARL.setText("jLabel8");
-        panelDatos.add(labelTipoAfiliacionARL, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
+        panelDatos.add(labelTipoAfiliacionARL, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
 
         labelApellidoEmpleado.setText("jLabel13");
-        panelDatos.add(labelApellidoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
+        panelDatos.add(labelApellidoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
         labelPais.setText("jLabel17");
-        panelDatos.add(labelPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+        panelDatos.add(labelPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
 
         labelCargo.setText("jLabel18");
-        panelDatos.add(labelCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, -1));
+        panelDatos.add(labelCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
 
         labelNombreEPS.setText("jLabel19");
-        panelDatos.add(labelNombreEPS, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
+        panelDatos.add(labelNombreEPS, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, -1));
 
         labelTipoAfiliacionEPS.setText("jLabel20");
-        panelDatos.add(labelTipoAfiliacionEPS, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, -1));
+        panelDatos.add(labelTipoAfiliacionEPS, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
 
         labelNombreFondoPension.setText("jLabel21");
-        panelDatos.add(labelNombreFondoPension, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, -1, -1));
+        panelDatos.add(labelNombreFondoPension, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
 
         labelNumeroCuenta.setText("jLabel22");
-        panelDatos.add(labelNumeroCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, -1));
+        panelDatos.add(labelNumeroCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
 
         labelTipoContrato.setText("jLabel23");
-        panelDatos.add(labelTipoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, -1, -1));
+        panelDatos.add(labelTipoContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, -1, -1));
 
         labelFechaInicio.setText("jLabel24");
-        panelDatos.add(labelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, -1, -1));
+        panelDatos.add(labelFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, -1, -1));
 
         labelSalario.setText("jLabel27");
-        panelDatos.add(labelSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, -1, -1));
+        panelDatos.add(labelSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, -1, -1));
 
-        labelDatosFechaFin.setText("jLabel28");
-        panelDatos.add(labelDatosFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, -1, -1));
+        labelFechaFin.setText("jLabel28");
+        panelDatos.add(labelFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, -1, -1));
 
         getContentPane().add(panelDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 94, 580, 510));
 
@@ -237,17 +296,38 @@ public class ConsultaGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if(txtId.getText().equals("")){
+            panelDatos.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Ingrese un Id para hacer la consulta", "Busqueda fallida", JOptionPane.ERROR_MESSAGE);
+        }else{
+            String identificacion = comboId.getSelectedItem().toString() + " " + txtId.getText();
+            Empleado empleado = controlador.buscarEmpleado(identificacion);
+            if(empleado == null){
+                panelDatos.setVisible(false);
+                JOptionPane.showMessageDialog(this, "No existe un empleado con el Id ingresado", "Resultado de búsqueda", JOptionPane.WARNING_MESSAGE);
+            }else{
+                panelDatos.setVisible(true);
+                String[] datosEmpleado = empleado.obtenerDatos().split(",");
+                mostrarDatos(datosEmpleado);
+                if(labelTipoContrato.getText().equals("Indefinido")){
+                    labelFF.setVisible(false);
+                    labelFechaFin.setVisible(false);
+                }else{
+                    labelFF.setVisible(true);
+                    labelFechaFin.setVisible(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         controlador.cambiarDeVentana(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
         event.numberKeyPress(evt);
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_txtIdKeyTyped
 
     /**
      * @param args the command line arguments
@@ -286,9 +366,9 @@ public class ConsultaGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboId;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -306,11 +386,10 @@ public class ConsultaGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelApellidoEmpleado;
     private javax.swing.JLabel labelCargo;
-    private javax.swing.JLabel labelDatosFechaFin;
     private javax.swing.JLabel labelEstado;
+    private javax.swing.JLabel labelFF;
     private javax.swing.JLabel labelFechaFin;
     private javax.swing.JLabel labelFechaInicio;
     private javax.swing.JLabel labelId;
@@ -330,5 +409,6 @@ public class ConsultaGUI extends javax.swing.JFrame {
     private javax.swing.JLabel labelTipoAfiliacionEPS;
     private javax.swing.JLabel labelTipoContrato;
     private javax.swing.JPanel panelDatos;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

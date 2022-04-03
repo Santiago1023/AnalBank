@@ -26,4 +26,9 @@ public class ContratoIndefinido extends Contrato{
         this.fechaInicio = fechaInicio;
         this.salario = salario;
     }
+    
+    @Override
+    public String obtenerDatos() {
+        return "Indefinido," + super.fechaInicio + "," + super.salario;
+    }    
 }

@@ -37,11 +37,11 @@ public class Controlador {
                 ventanaMenuPrincipal.setVisible(false);
                 break;
             case 2:
-                ventanaConsulta.setVisible(true);
+                ventanaModificar.setVisible(true);
                 ventanaMenuPrincipal.setVisible(false);
                 break;
-            case 3:
-                ventanaModificar.setVisible(true);
+            case 3:                
+                ventanaConsulta.setVisible(true);
                 ventanaMenuPrincipal.setVisible(false);
                 break;
             default:
@@ -55,5 +55,13 @@ public class Controlador {
     
     public boolean guardarEmpleado(Empleado empleado){
         return proxy.guardar(empleado);
+    }
+    
+    public Empleado buscarEmpleado(String id){
+        return proxy.consultar(id);
+    }
+    
+    public boolean actualizar(String identificacionAntigua, Empleado empleado){
+        return proxy.actualizar(identificacionAntigua, empleado);
     }
 }

@@ -29,4 +29,9 @@ public class ContratoPrestacionServicios extends Contrato{
         super.salario = salario;
         this.fechaFinalizacionPS = fechaFinalizacion;
     }
+    
+    @Override
+    public String obtenerDatos() {
+        return "Prestación de servicios," + super.fechaInicio + "," + super.salario + "," + fechaFinalizacionPS;
+    }    
 }

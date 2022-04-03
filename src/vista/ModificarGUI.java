@@ -5,7 +5,19 @@
 package vista;
 
 import controlador.Controlador;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
+import modelo.ARL;
+import modelo.Contrato;
+import modelo.ContratoFijo;
+import modelo.ContratoIndefinido;
+import modelo.ContratoPrestacionServicios;
+import modelo.CuentaNomina;
+import modelo.EPS;
+import modelo.Empleado;
 import modelo.Eventos;
+import modelo.FondoPension;
 
 /**
  *
@@ -23,6 +35,109 @@ public class ModificarGUI extends javax.swing.JFrame {
         panelDatos.setVisible(false);
     }
 
+    public void mostrarDatos(String [] datos){
+        for (int i = 0; i < datos.length; i++) {
+            String datoLeido = datos[i];
+            switch (i) {
+                case 0:
+                    txtNombreEmpleado.setText(datoLeido);
+                    break;
+                case 1:
+                    txtApellidoEmpleado.setText(datoLeido);
+                    break;
+                case 2:
+                    txtIdEmpleado.setText(datoLeido.substring(4));
+                    break;
+                case 3:
+                    txtPaisEmpleado.setText(datoLeido);
+                    break;
+                case 4:
+                    if(datoLeido.equals("Activo")){
+                        comboEstadoEmpleado.setSelectedIndex(0);
+                    }else if(datoLeido.equals("Inactivo")){
+                        comboEstadoEmpleado.setSelectedIndex(1);
+                    }else{
+                        comboEstadoEmpleado.setSelectedIndex(2);
+                    }
+                    break;
+                case 5:
+                    txtCargoEmpleado.setText(datoLeido);
+                    break;
+                case 6:
+                    txtNombreArl.setText(datoLeido);
+                    break;
+                case 7:
+                    txtTipoAfiliadoArl.setText(datoLeido);
+                    break;
+                case 8:
+                    txtNombreEps.setText(datoLeido);
+                    break;
+                case 9:
+                    txtTipoAfiliacionEps.setText(datoLeido);
+                    break;
+                case 10:
+                    txtNumeroCuentaNomina.setText(datoLeido);
+                    break;
+                case 11:
+                    txtNombrePension.setText(datoLeido);
+                    break;
+                case 12:
+                    if(datoLeido.equals("Fijo")){
+                        comboContrato.setSelectedIndex(0);
+                    }else if(datoLeido.equals("Indefinido")){
+                        comboContrato.setSelectedIndex(1);
+                    }else{
+                        comboContrato.setSelectedIndex(2);
+                    }
+                    break;
+                case 13:
+                    String[] fechaInicio = datoLeido.split("/");
+                    txtFechaInicio.setCalendar(new GregorianCalendar(Integer.parseInt(fechaInicio[2]), Integer.parseInt(fechaInicio[1])-1, Integer.parseInt(fechaInicio[0])));
+                    //txtFechaInicio.setDate(new Date(Integer.parseInt(fechaInicio[2]), Integer.parseInt(fechaInicio[1]), Integer.parseInt(fechaInicio[0])));
+                    break;
+                case 14://Contrato
+                    txtSalarioContrato.setText(datoLeido);
+                    break;
+                case 15:
+                    String[] fechaFin = datoLeido.split("/");
+                    txtFechaFin.setCalendar(new GregorianCalendar(Integer.parseInt(fechaFin[2]), Integer.parseInt(fechaFin[1])-1, Integer.parseInt(fechaFin[0])));
+                    //txtFechaInicio.setDate(new Date(Integer.parseInt(fechaFin[2]), Integer.parseInt(fechaFin[1]), Integer.parseInt(fechaFin[0])));
+                    break;
+                default:
+            }
+        }        
+    }
+    
+    public boolean datosNoVacios(){
+        if(txtNombreEmpleado.getText().equals("") || txtApellidoEmpleado.getText().equals("") || txtIdEmpleado.getText().equals("") ||
+                txtPaisEmpleado.getText().equals("") || txtCargoEmpleado.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del empleado");
+            return false;
+        }
+        if(txtNombreArl.getText().equals("") || txtTipoAfiliadoArl.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del ARL");
+            return false;
+        }
+        if(txtNombreEps.getText().equals("") || txtTipoAfiliacionEps.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del EPS");
+            return false;
+        }
+        if(txtNumeroCuentaNomina.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada de la cuenta de nómina");
+            return false;
+        }
+        if(txtNombrePension.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del fondo de pensión");
+            return false;
+        }
+        if(txtFechaInicio.getDateFormatString().equals("") || (comboContrato.getSelectedIndex() != 1 && txtFechaFin.getDateFormatString().equals(""))
+                || txtSalarioContrato.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Verifique la información ingresada del contrato");
+            return false;
+        }
+        return true;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,9 +148,9 @@ public class ModificarGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        txtIdBuscar = new javax.swing.JTextField();
+        comboIdBuscar = new javax.swing.JComboBox<>();
+        btnBuscar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
         panelDatos = new javax.swing.JPanel();
@@ -55,9 +170,9 @@ public class ModificarGUI extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtSalarioContrato = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        fechaInicio = new com.toedter.calendar.JDateChooser();
-        fechaFin = new com.toedter.calendar.JDateChooser();
+        labelFF = new javax.swing.JLabel();
+        txtFechaInicio = new com.toedter.calendar.JDateChooser();
+        txtFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -80,9 +195,9 @@ public class ModificarGUI extends javax.swing.JFrame {
         txtApellidoEmpleado = new javax.swing.JTextField();
         txtIdEmpleado = new javax.swing.JTextField();
         txtPaisEmpleado = new javax.swing.JTextField();
-        txtEstadoEmpleado = new javax.swing.JTextField();
         txtCargoEmpleado = new javax.swing.JTextField();
         comboId = new javax.swing.JComboBox<>();
+        comboEstadoEmpleado = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,23 +207,23 @@ public class ModificarGUI extends javax.swing.JFrame {
         jLabel1.setText("Ingrese el tipo y número de identificación");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtIdBuscarKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 44, 136, -1));
+        getContentPane().add(txtIdBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 44, 136, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 44, -1, -1));
+        comboIdBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
+        getContentPane().add(comboIdBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 44, -1, -1));
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 43, -1, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 43, -1, -1));
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +234,11 @@ public class ModificarGUI extends javax.swing.JFrame {
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 660, -1, -1));
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 660, -1, -1));
 
         labelNombre.setText("Nombre");
@@ -220,7 +340,7 @@ public class ModificarGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel18.setText("Fecha finalizacion");
+        labelFF.setText("Fecha finalizacion");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -238,11 +358,11 @@ public class ModificarGUI extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(comboContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSalarioContrato)
-                            .addComponent(fechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
+                            .addComponent(txtFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
+                        .addComponent(labelFF)
                         .addGap(18, 18, 18)
-                        .addComponent(fechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(txtFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -255,15 +375,15 @@ public class ModificarGUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel16)
-                    .addComponent(fechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSalarioContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18)
-                    .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelFF)
+                    .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -388,12 +508,6 @@ public class ModificarGUI extends javax.swing.JFrame {
             }
         });
 
-        txtEstadoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtEstadoEmpleadoKeyTyped(evt);
-            }
-        });
-
         txtCargoEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCargoEmpleadoKeyTyped(evt);
@@ -402,17 +516,19 @@ public class ModificarGUI extends javax.swing.JFrame {
 
         comboId.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E" }));
 
+        comboEstadoEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo", "Retirado" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(txtEstadoEmpleado))
+                        .addGap(31, 31, 31)
+                        .addComponent(comboEstadoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
@@ -421,7 +537,7 @@ public class ModificarGUI extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(comboId, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(104, 104, 104)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,9 +572,9 @@ public class ModificarGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtEstadoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(txtCargoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtCargoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboEstadoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 255));
@@ -544,17 +660,38 @@ public class ModificarGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if(txtIdBuscar.getText().equals("")){
+            panelDatos.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Ingrese un Id para hacer la consulta", "Busqueda fallida", JOptionPane.ERROR_MESSAGE);
+        }else{
+            String identificacion = comboIdBuscar.getSelectedItem().toString() + " " + txtIdBuscar.getText();
+            Empleado empleado = controlador.buscarEmpleado(identificacion);
+            if(empleado == null){
+                panelDatos.setVisible(false);
+                JOptionPane.showMessageDialog(this, "No existe un empleado con el Id ingresado", "Resultado de búsqueda", JOptionPane.WARNING_MESSAGE);
+            }else{
+                panelDatos.setVisible(true);
+                String[] datosEmpleado = empleado.obtenerDatos().split(",");
+                mostrarDatos(datosEmpleado);
+                if(comboContrato.getSelectedItem().toString().equals("Indefinido")){
+                    labelFF.setVisible(false);
+                    txtFechaFin.setVisible(false);
+                }else{
+                    labelFF.setVisible(true);
+                    txtFechaFin.setVisible(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void comboContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboContratoActionPerformed
         if(comboContrato.getSelectedIndex() == 0){
-            jLabel18.setVisible(false);
-            fechaFin.setVisible(false);
+            labelFF.setVisible(false);
+            txtFechaFin.setVisible(false);
         }else{
-            jLabel18.setVisible(true);
-            fechaFin.setVisible(true);
+            labelFF.setVisible(true);
+            txtFechaFin.setVisible(true);
         }
     }//GEN-LAST:event_comboContratoActionPerformed
 
@@ -569,10 +706,6 @@ public class ModificarGUI extends javax.swing.JFrame {
     private void txtIdEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpleadoKeyTyped
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtIdEmpleadoKeyTyped
-
-    private void txtEstadoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstadoEmpleadoKeyTyped
-        event.textKeyPress(evt);
-    }//GEN-LAST:event_txtEstadoEmpleadoKeyTyped
 
     private void txtApellidoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoEmpleadoKeyTyped
         event.textKeyPress(evt);
@@ -614,9 +747,60 @@ public class ModificarGUI extends javax.swing.JFrame {
         event.numberDecimalKeyPress(evt, txtSalarioContrato);
     }//GEN-LAST:event_txtSalarioContratoKeyTyped
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void txtIdBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBuscarKeyTyped
         event.numberKeyPress(evt);
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_txtIdBuscarKeyTyped
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if(datosNoVacios()){
+            ARL arl = new ARL(txtNombreArl.getText(), txtTipoAfiliadoArl.getText());
+            EPS eps = new EPS(txtNombreEps.getText(), txtTipoAfiliacionEps.getText());
+            CuentaNomina cuentaNomina = new CuentaNomina(txtNumeroCuentaNomina.getText());
+            FondoPension fondoPension = new FondoPension(txtNombrePension.getText());
+            Contrato contrato;
+            String fechaInicio = txtFechaInicio.getDate().toLocaleString();
+            if(fechaInicio.charAt(10) == ','){
+                fechaInicio = fechaInicio.substring(0, 10);
+            }else{
+                fechaInicio = fechaInicio.substring(0, 9);
+            }  
+            String fechaFin;
+            switch(comboContrato.getSelectedIndex()){
+                case 0:
+                    fechaFin = txtFechaFin.getDate().toLocaleString();
+                    if(fechaFin.charAt(10) == ','){
+                        fechaFin = fechaFin.substring(0, 10);
+                    }else{
+                        fechaFin = fechaFin.substring(0, 9);
+                    }
+                    contrato = new ContratoFijo(fechaInicio, fechaFin, Float.parseFloat(txtSalarioContrato.getText()));
+                    break;
+                case 1:
+                    contrato = new ContratoIndefinido(fechaInicio, Float.parseFloat(txtSalarioContrato.getText()));
+                    break;
+                default:
+                    fechaFin = txtFechaFin.getDate().toLocaleString();
+                    if(fechaFin.charAt(10) == ','){
+                        fechaFin = fechaFin.substring(0, 10);
+                    }else{
+                        fechaFin = fechaFin.substring(0, 9);
+                    }
+                    contrato = new ContratoPrestacionServicios(fechaInicio, fechaFin, Float.parseFloat(txtSalarioContrato.getText()));
+            }
+            Empleado empleado = new Empleado(txtNombreEmpleado.getText(), txtApellidoEmpleado.getText(), (comboId.getSelectedItem().toString() + " " + txtIdEmpleado.getText()),
+                    txtPaisEmpleado.getText(), comboEstadoEmpleado.getSelectedItem().toString(), txtCargoEmpleado.getText());
+            empleado.agregarComponente(arl);
+            empleado.agregarComponente(eps);
+            empleado.agregarComponente(cuentaNomina);
+            empleado.agregarComponente(fondoPension);
+            empleado.agregarComponente(contrato);
+            if(controlador.actualizar(comboIdBuscar.getSelectedItem().toString() + " " + txtIdBuscar.getText(), empleado)){
+                JOptionPane.showMessageDialog(this, "Los datos del empleado se han actualizado", "Datos actualizados", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "No se han podido modificar los datos del empleado", "Datos no actualizados", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -655,13 +839,12 @@ public class ModificarGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<String> comboContrato;
+    private javax.swing.JComboBox<String> comboEstadoEmpleado;
     private javax.swing.JComboBox<String> comboId;
-    private com.toedter.calendar.JDateChooser fechaFin;
-    private com.toedter.calendar.JDateChooser fechaInicio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboIdBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -671,7 +854,6 @@ public class ModificarGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -687,7 +869,7 @@ public class ModificarGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelFF;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelNombre1;
     private javax.swing.JLabel labelTipo;
@@ -695,7 +877,9 @@ public class ModificarGUI extends javax.swing.JFrame {
     private javax.swing.JPanel panelDatos;
     private javax.swing.JTextField txtApellidoEmpleado;
     private javax.swing.JTextField txtCargoEmpleado;
-    private javax.swing.JTextField txtEstadoEmpleado;
+    private com.toedter.calendar.JDateChooser txtFechaFin;
+    private com.toedter.calendar.JDateChooser txtFechaInicio;
+    private javax.swing.JTextField txtIdBuscar;
     private javax.swing.JTextField txtIdEmpleado;
     private javax.swing.JTextField txtNombreArl;
     private javax.swing.JTextField txtNombreEmpleado;

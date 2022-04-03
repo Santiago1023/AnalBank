@@ -29,5 +29,10 @@ public class ContratoFijo extends Contrato{
         super.salario = salario;
         this.fechaFinalizacionF = fechaFinalizacion;
     }
+
+    @Override
+    public String obtenerDatos() {
+        return "Fijo," + super.fechaInicio + "," + super.salario + "," + fechaFinalizacionF;
+    }    
     
 }

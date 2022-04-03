@@ -26,4 +26,5 @@ public abstract class Contrato implements IComponente {
     @Override
     public abstract String toString();
     
+    public abstract String obtenerDatos();
 }

@@ -35,6 +35,7 @@ public class ConversorJSONtoEmpleado {
     }
 
     public Empleado convertirEmpleado(String json) {
+        json = json.replaceAll("}", "");
         if (json.endsWith("]") || json.endsWith(",")) {
             json = json.substring(0, json.length() - 2);
         } else {
@@ -104,10 +105,10 @@ public class ConversorJSONtoEmpleado {
                         nombrePension = datoLeido.substring(26, datoLeido.length() - 1);
                         break;
                     case 15://Contrato
-                        fechaInicio = datoLeido.substring(26, datoLeido.length() - 1);
+                        fechaInicio = datoLeido.substring(27, datoLeido.length() - 1);
                         break;
                     case 16:
-                        salario = datoLeido.substring(11, datoLeido.length() - 1);
+                        salario = datoLeido.substring(10, datoLeido.length() - 1);
                         break;
                     default:
                 }
@@ -161,10 +162,10 @@ public class ConversorJSONtoEmpleado {
                             fechaFin = datoLeido.substring(34, datoLeido.length() - 1);
                         }
                     case 16:
-                        fechaInicio = datoLeido.substring(26, datoLeido.length() - 1);
+                        fechaInicio = datoLeido.substring(15, datoLeido.length() - 1);
                         break;
                     case 17:
-                        salario = datoLeido.substring(11, datoLeido.length() - 1);
+                        salario = datoLeido.substring(10, datoLeido.length() - 1);
                         break;
                     default:
                 }

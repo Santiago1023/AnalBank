@@ -623,7 +623,11 @@ public class RegistroGUI extends javax.swing.JFrame {
             empleado.agregarComponente(cuentaNomina);
             empleado.agregarComponente(fondoPension);
             empleado.agregarComponente(contrato);
-            controlador.guardarEmpleado(empleado);
+            if(controlador.guardarEmpleado(empleado)){
+                JOptionPane.showMessageDialog(this, "El empleado se registró exitosamente", "Empleado registrado", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "Ya existe un empleado con este Id", "Registro fallido", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
