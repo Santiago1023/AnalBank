@@ -22,6 +22,7 @@ public class ConsultaGUI extends javax.swing.JFrame {
      */
     public ConsultaGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         panelDatos.setVisible(false);
     }
     

@@ -17,7 +17,8 @@ public class MainGUI extends javax.swing.JFrame {
      * Creates new form MainGUI
      */
     public MainGUI() {
-        initComponents();        
+        initComponents();     
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -32,6 +32,7 @@ public class ModificarGUI extends javax.swing.JFrame {
      */
     public ModificarGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         panelDatos.setVisible(false);
     }
 

@@ -22,6 +22,7 @@ public class RegistroGUI extends javax.swing.JFrame {
      */
     public RegistroGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public boolean datosNoVacios(){

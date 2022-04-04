@@ -28,7 +28,9 @@ public class Proxy implements IDB{
     @Override
     public boolean actualizar(String identificacionAntigua, Empleado empleado) {
         if(validar(identificacionAntigua)){
-            return dbJson.actualizar(identificacionAntigua, empleado);
+            if(!identificacionAntigua.equals(empleado.id) && !validar(empleado.id)){
+                return dbJson.actualizar(identificacionAntigua, empleado);
+            }
         }
         return false;
     }
