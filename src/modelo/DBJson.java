@@ -22,11 +22,9 @@ public class DBJson implements IDB{
 
     @Override
     public boolean guardar(Empleado empleado) {
-        boolean escritura = false;
-        
+        boolean escritura = false;        
         ArrayList<Empleado> empleados = obtenerEmpleados();
-        Gson gson = new Gson();//Objeto con el cual se implementara la API Gson
-                        
+        Gson gson = new Gson();//Objeto con el cual se implementara la API Gson                        
         String json="["+gson.toJson(empleado);
         if(empleados.isEmpty()){
             json += "]";

@@ -5,8 +5,6 @@
  */
 package modelo;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author jhona
