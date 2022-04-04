@@ -817,6 +817,8 @@ public class ModificarGUI extends javax.swing.JFrame {
             empleado.agregarComponente(contrato);
             if(controlador.actualizar(comboIdBuscar.getSelectedItem().toString() + " " + txtIdBuscar.getText(), empleado)){
                 JOptionPane.showMessageDialog(this, "Los datos del empleado se han actualizado", "Datos actualizados", JOptionPane.INFORMATION_MESSAGE);
+                eliminarCampos();
+                panelDatos.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(this, "No se han podido modificar los datos del empleado", "Datos no actualizados", JOptionPane.ERROR_MESSAGE);
             }
