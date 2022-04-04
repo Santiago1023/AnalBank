@@ -794,10 +794,10 @@ public class ModificarGUI extends javax.swing.JFrame {
                     }else{
                         fechaFin = fechaFin.substring(0, 9);
                     }
-                    contrato = new ContratoFijo(fechaInicio, fechaFin, Float.parseFloat(txtSalarioContrato.getText()));
+                    contrato = new ContratoFijo(fechaInicio, fechaFin, txtSalarioContrato.getText());
                     break;
                 case 1:
-                    contrato = new ContratoIndefinido(fechaInicio, Float.parseFloat(txtSalarioContrato.getText()));
+                    contrato = new ContratoIndefinido(fechaInicio, txtSalarioContrato.getText());
                     break;
                 default:
                     fechaFin = txtFechaFin.getDate().toLocaleString();
@@ -806,7 +806,7 @@ public class ModificarGUI extends javax.swing.JFrame {
                     }else{
                         fechaFin = fechaFin.substring(0, 9);
                     }
-                    contrato = new ContratoPrestacionServicios(fechaInicio, fechaFin, Float.parseFloat(txtSalarioContrato.getText()));
+                    contrato = new ContratoPrestacionServicios(fechaInicio, fechaFin, txtSalarioContrato.getText());
             }
             Empleado empleado = new Empleado(txtNombreEmpleado.getText(), txtApellidoEmpleado.getText(), (comboId.getSelectedItem().toString() + " " + txtIdEmpleado.getText()),
                     txtPaisEmpleado.getText(), comboEstadoEmpleado.getSelectedItem().toString(), txtCargoEmpleado.getText());

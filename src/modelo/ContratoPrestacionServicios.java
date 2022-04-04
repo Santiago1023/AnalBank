@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class ContratoPrestacionServicios extends Contrato{
     protected String fechaFinalizacionPS;
 
-    public ContratoPrestacionServicios(String fechaInicio, String fechaFinalizacion, float salario) {
+    public ContratoPrestacionServicios(String fechaInicio, String fechaFinalizacion, String salario) {
         super(fechaInicio, salario);
         this.fechaFinalizacionPS = fechaFinalizacion;
     }
@@ -24,7 +24,7 @@ public class ContratoPrestacionServicios extends Contrato{
         return "ContratoFijo{" + "fechaInicio=" + fechaInicio + ", fechaFinalizacionPS=" + fechaFinalizacionPS + ", salario=" + salario + '}';
     }
     
-    public void modificarInformacion(String fechaInicio, String fechaFinalizacion, float salario){
+    public void modificarInformacion(String fechaInicio, String fechaFinalizacion, String salario){
         super.fechaInicio = fechaInicio;
         super.salario = salario;
         this.fechaFinalizacionPS = fechaFinalizacion;

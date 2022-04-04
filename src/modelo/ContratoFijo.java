@@ -12,7 +12,7 @@ package modelo;
 public class ContratoFijo extends Contrato{
     protected String fechaFinalizacionF;
 
-    public ContratoFijo(String fechaInicio, String fechaFinalizacion, float salario) {
+    public ContratoFijo(String fechaInicio, String fechaFinalizacion, String salario) {
         super(fechaInicio, salario);
         this.fechaFinalizacionF = fechaFinalizacion;
     }
@@ -22,7 +22,7 @@ public class ContratoFijo extends Contrato{
         return "ContratoFijo{" + "fechaInicio=" + fechaInicio + ", fechaFinalizacionF=" + fechaFinalizacionF + ", salario=" + salario + '}';
     }
     
-    public void modificarInformacion(String fechaInicio, String fechaFinalizacion, float salario){
+    public void modificarInformacion(String fechaInicio, String fechaFinalizacion, String salario){
         super.fechaInicio = fechaInicio;
         super.salario = salario;
         this.fechaFinalizacionF = fechaFinalizacion;

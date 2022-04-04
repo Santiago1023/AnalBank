@@ -13,7 +13,7 @@ import java.time.LocalDate;
  */
 public class ContratoIndefinido extends Contrato{
 
-    public ContratoIndefinido(String fechaInicio, float salario) {
+    public ContratoIndefinido(String fechaInicio, String salario) {
         super(fechaInicio, salario);
     }
 
@@ -22,7 +22,7 @@ public class ContratoIndefinido extends Contrato{
         return "ContratoFijo{" + "fechaInicio=" + fechaInicio + ", salario=" + salario + '}';
     }
     
-    public void modificarInformacion(String fechaInicio, float salario) {
+    public void modificarInformacion(String fechaInicio, String salario) {
         this.fechaInicio = fechaInicio;
         this.salario = salario;
     }

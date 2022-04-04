@@ -182,11 +182,11 @@ public class ConversorJSONtoEmpleado {
         cuentaNomina = new CuentaNomina(numeroCuenta);
         fondoPension = new FondoPension(nombrePension);
         if(tipoContrato == 0){
-            contrato = new ContratoFijo(fechaInicio, fechaFin, Float.parseFloat(salario));
+            contrato = new ContratoFijo(fechaInicio, fechaFin, salario);
         }else if(tipoContrato == 1){
-            contrato = new ContratoIndefinido(fechaInicio, Float.parseFloat(salario));
+            contrato = new ContratoIndefinido(fechaInicio, salario);
         }else{
-            contrato = new ContratoPrestacionServicios(fechaInicio, fechaFin, Float.parseFloat(salario));
+            contrato = new ContratoPrestacionServicios(fechaInicio, fechaFin, salario);
         }
         DatosExternos datosExternos = new DatosExternos(arl, eps, cuentaNomina, fondoPension, contrato);
         empleado = new Empleado(nombreEmpleado, apellidoEmpleado, idEmpleado, paisEmpleado, estadoEmpleado, cargoEmpleado, datosExternos);
