@@ -139,6 +139,24 @@ public class ModificarGUI extends javax.swing.JFrame {
         return true;
     }
     
+    public void eliminarCampos(){
+        txtIdBuscar.setText("");
+        txtNombreEmpleado.setText("");
+        txtApellidoEmpleado.setText("");
+        txtIdEmpleado.setText("");
+        txtPaisEmpleado.setText("");
+        txtCargoEmpleado.setText("");
+        txtNombreArl.setText("");
+        txtTipoAfiliadoArl.setText("");
+        txtNombreEps.setText("");
+        txtTipoAfiliacionEps.setText("");
+        txtNumeroCuentaNomina.setText("");
+        txtNombrePension.setText("");
+        txtSalarioContrato.setText("");
+        txtFechaInicio.setCalendar(null);
+        txtFechaFin.setCalendar(null);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -687,7 +705,7 @@ public class ModificarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void comboContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboContratoActionPerformed
-        if(comboContrato.getSelectedIndex() == 0){
+        if(comboContrato.getSelectedIndex() == 1){
             labelFF.setVisible(false);
             txtFechaFin.setVisible(false);
         }else{
@@ -697,6 +715,8 @@ public class ModificarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_comboContratoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        panelDatos.setVisible(false);
+        eliminarCampos();
         controlador.cambiarDeVentana(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 

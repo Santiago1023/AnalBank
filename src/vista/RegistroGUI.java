@@ -6,6 +6,7 @@ package vista;
 
 import controlador.Controlador;
 import java.time.LocalDate;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import modelo.*;
 
@@ -53,6 +54,23 @@ public class RegistroGUI extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+    
+    public void eliminarCampos(){
+        txtNombreEmpleado.setText("");
+        txtApellidoEmpleado.setText("");
+        txtIdEmpleado.setText("");
+        txtPaisEmpleado.setText("");
+        txtCargoEmpleado.setText("");
+        txtNombreArl.setText("");
+        txtTipoAfiliadoArl.setText("");
+        txtNombreEps.setText("");
+        txtTipoAfiliacionEps.setText("");
+        txtNumeroCuentaNomina.setText("");
+        txtNombrePension.setText("");
+        txtSalarioContrato.setText("");
+        txtFechaInicio.setCalendar(null);
+        txtFechaFin.setCalendar(null);
     }
 
     /**
@@ -578,6 +596,7 @@ public class RegistroGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_comboContratoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        eliminarCampos();
         controlador.cambiarDeVentana(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -626,6 +645,7 @@ public class RegistroGUI extends javax.swing.JFrame {
             empleado.agregarComponente(contrato);
             if(controlador.guardarEmpleado(empleado)){
                 JOptionPane.showMessageDialog(this, "El empleado se registró exitosamente", "Empleado registrado", JOptionPane.INFORMATION_MESSAGE);
+                eliminarCampos();
             }else{
                 JOptionPane.showMessageDialog(this, "Ya existe un empleado con este Id", "Registro fallido", JOptionPane.ERROR_MESSAGE);
             }

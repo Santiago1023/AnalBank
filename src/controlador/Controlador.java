@@ -17,7 +17,6 @@ public class Controlador {
     protected static ConsultaGUI ventanaConsulta;
     protected static ModificarGUI ventanaModificar;
     protected static RegistroGUI ventanaRegistro;
-    protected Empleado empleado;
     protected static IDB proxy;
     
     public static void main(String[] args) {

@@ -9,7 +9,8 @@ package modelo;
  *
  * @author jhona
  */
-public class Proxy implements IDB{
+public class Proxy implements IDB {
+
     private DBJson dbJson;
 
     public Proxy() {
@@ -18,7 +19,7 @@ public class Proxy implements IDB{
 
     @Override
     public boolean guardar(Empleado empleado) {
-        if(!validar(empleado.id)){
+        if (!validar(empleado.id)) {
             dbJson.guardar(empleado);
             return true;
         }
@@ -27,8 +28,10 @@ public class Proxy implements IDB{
 
     @Override
     public boolean actualizar(String identificacionAntigua, Empleado empleado) {
-        if(validar(identificacionAntigua)){
-            if(!identificacionAntigua.equals(empleado.id) && !validar(empleado.id)){
+        if (validar(identificacionAntigua)) {
+            if (!identificacionAntigua.equals(empleado.id) && !validar(empleado.id)) {
+                return dbJson.actualizar(identificacionAntigua, empleado);
+            }else{
                 return dbJson.actualizar(identificacionAntigua, empleado);
             }
         }
@@ -39,9 +42,9 @@ public class Proxy implements IDB{
     public Empleado consultar(String identificacion) {
         return dbJson.consultar(identificacion);
     }
-    
-    public boolean validar(String identificacion){
-        if(consultar(identificacion) == null){
+
+    public boolean validar(String identificacion) {
+        if (consultar(identificacion) == null) {
             return false;
         }
         return true;

@@ -82,6 +82,24 @@ public class ConsultaGUI extends javax.swing.JFrame {
             }
         }        
     }
+    
+    public void eliminarCampos(){
+        txtId.setText("");
+        labelNombreEmpleado.setText("");
+        labelApellidoEmpleado.setText("");
+        labelId.setText("");
+        labelPais.setText("");
+        labelCargo.setText("");
+        labelNombreARL.setText("");
+        labelTipoAfiliacionARL.setText("");
+        labelNombreEPS.setText("");
+        labelTipoAfiliacionEPS.setText("");
+        labelNumeroCuenta.setText("");
+        labelNombreFondoPension.setText("");
+        labelSalario.setText("");
+        labelFechaInicio.setText(null);
+        labelFechaFin.setText(null);        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -323,6 +341,8 @@ public class ConsultaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        eliminarCampos();
+        panelDatos.setVisible(false);
         controlador.cambiarDeVentana(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
